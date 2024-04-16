@@ -11,11 +11,42 @@
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+
+.title {
+  color: white;
+  background-color: rgb(238, 45, 45);
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.button {
+  color: white;
+  background-color: rgb(238, 45, 45);
+  font-size: 24px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin-right: 20px;
+  cursor: pointer;
+  margin-right: 40px; 
+  margin-left: 40px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  color:rgb(238, 45, 45);
+  font-size: 24px;
+  margin-top: 10px;
+  font-weight: 300;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 @keyframes logo-spin {

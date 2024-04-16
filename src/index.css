@@ -48,11 +48,12 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: rgb(212, 44, 44);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button:focus{
+ font-size: 20px;
 }
 
 @media (prefers-color-scheme: light) {
