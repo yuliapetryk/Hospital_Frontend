@@ -1,33 +1,41 @@
 import './App.css'
-import Auth from './Auth'; 
-
+import React, { useState } from 'react';
+import { AuthFormPatient, AuthFormDoctor } from './AuthForm'; // Припускаючи, що це шлях до вашого файлу з формами
 
 
 function App() {
+  const [showAuthFormPatient, setShowAuthFormPatient] = useState(false); // Стан для відображення форми
+  const [showAuthFormDoctor, setShowAuthFormDoctor] = useState(false); // Стан для відображення форми
 
   return (
     <div className="App">
-    <div>
+      <div>
         <img src="/icon-medicine.png" className="logo" alt=" logo" />
         <img src="/icon-doctor.png" className="logo doctor" alt="doctor logo" />
-    
-    </div>
-  <h3 class ="subtitle">Приватна поліклініка</h3>
-  <h1 class="title">ProfiMed</h1>
-  <h3 class ="subtitle">Увійти як:</h3>
-  <button class="button">Лікар</button>
-  <button class="button">Пацієнт</button>
-    <div className="card">
-      <p>
-        Edit <code>src/App.jsx</code> and save to test HMR
-      </p>
-    </div>
-    <div>
-        <Auth />
       </div>
-  </div>
-    
-  )
+      <h3 className="subtitle">Приватна поліклініка</h3>
+      <h1 className="title">ProfiMed</h1>
+      <h3 className="subtitle">Увійти як:</h3>
+      
+      <button onClick={() => {
+        if (!showAuthFormDoctor) {
+        setShowAuthFormDoctor(true);
+        setShowAuthFormPatient(false);
+     }
+  }} className="button">Лікар</button>
+
+      <button onClick={() => {
+        if (!showAuthFormPatient) {
+        setShowAuthFormPatient(true);
+       setShowAuthFormDoctor(false);
+  }
+}} className="button">Пацієнт</button>
+
+      {showAuthFormDoctor && <AuthFormDoctor />}
+      {showAuthFormPatient && <AuthFormPatient />}
+    </div>
+  );
 }
 
-export default App
+export default App;
+
