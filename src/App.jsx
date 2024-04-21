@@ -1,6 +1,9 @@
 import './App.css'
+import Appoinments from './Appointments'
 import React, { useState } from 'react';
-import { AuthFormPatient, AuthFormDoctor } from './AuthForm'; // Припускаючи, що це шлях до вашого файлу з формами
+import { AuthFormPatient, AuthFormDoctor } from './AuthForm'; 
+import  AppointmentForm  from './AppointmentForm'; 
+import  Appointments  from './Appointments'; // Припускаючи, що це шлях до вашого файлу з формами
 
 
 function App() {
@@ -28,11 +31,15 @@ function App() {
         if (!showAuthFormPatient) {
         setShowAuthFormPatient(true);
        setShowAuthFormDoctor(false);
+       
   }
 }} className="button">Пацієнт</button>
 
       {showAuthFormDoctor && <AuthFormDoctor />}
       {showAuthFormPatient && <AuthFormPatient />}
+      {/* <div><Appoinments /></div> */} 
+
+    <AppointmentForm />
     </div>
   );
 }
