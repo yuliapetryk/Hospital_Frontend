@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate} from "react-router-dom"; 
+import './AuthForm.css'
 
 export function AuthForm({ mode }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,7 +25,10 @@ export function AuthForm({ mode }) {
         if (result === "0") {
           setErrorMessage("Неправильний ID або пароль");
         } else {
+          if (mode === 0){
           navigate("/info", { state: { user: result } });
+          }
+          else navigate("/patient", {state: { user: result }})
         }
       })
       .catch((error) => {
@@ -57,6 +61,5 @@ export function AuthForm({ mode }) {
     </div>
   );
 }
-
 
 export default AuthForm

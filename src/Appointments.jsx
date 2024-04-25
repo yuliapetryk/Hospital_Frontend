@@ -1,27 +1,35 @@
 import React from 'react'; 
-
+import './Appointments.css';
 
 class Appointments extends React.Component {
-    constructor(props) {
-      super(props);
-      console.log("Hehe"); 
-      this.state = { appointments: [] };
-      this.handleExecute = this.handleExecute.bind(this); // Прив'язка контексту для обробника подій
-      fetch("http://localhost:3030/hospital/appointments")
-        .then(response => response.json())
-        .then(result => {
-          console.log(result); // Виведення у консоль результату запиту
-          this.setState({
-            appointments: result
-          });
-        })
-        .catch(error => console.error('Error:', error)); 
-    }
+  constructor(props) {
+    super(props);
+    this.state = { appointments: [] };
+    this.handleExecute = this.handleExecute.bind(this); 
+
+    let url = "http://localhost:3030/hospital/appointments_doctor";
+   
+    fetch(`${url}/${this.props.id}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result); 
+        this.setState({
+          appointments: result
+        });
+      })
+      .catch(error => console.error('Error:', error)); 
+  }
+    
     handleExecute(index, id) {
       const updatedAppointments = [...this.state.appointments];
       updatedAppointments[index].status = true;
       this.setState({ appointments: updatedAppointments });
-      fetch(`http://localhost:3030/hospital/appointments/${id}`, {
+      fetch(`http://localhost:3030/hospital/status/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -34,9 +42,12 @@ class Appointments extends React.Component {
   
     render() {
       return (
-        <div>
+        <div className="appointments-container">
+            <div class="form_container">
+              <h3 сlass="subtitle">Ваші прийоми:</h3>
+            </div>
           {this.state.appointments.length > 0 ? (
-            <table>
+            <table className="appointments-table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -48,12 +59,12 @@ class Appointments extends React.Component {
                   <th>Procedure</th>
                   <th>Surgery</th>
                   <th>Status</th>
-                  <th>Action</th> {/* Доданий стовпчик для дій */}
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.appointments.map((appointment, index) => (
-                  <tr key={appointment.date}>
+                  <tr key={appointment.id}>
                     <td>{appointment.id}</td>
                     <td>{appointment.date}</td>
                     <td>{appointment.doctorId}</td>
@@ -64,8 +75,12 @@ class Appointments extends React.Component {
                     <td>{appointment.surgery}</td>
                     <td>{appointment.status ? 'Yes' : 'No'}</td>
                     <td>
-                      {/* Відображення кнопки тільки для записів зі статусом false */}
-                      {!appointment.status && (
+                      {appointment.surgery=== "" && this.props.param === "nurse" && !appointment.status && (
+                        <button onClick={() => this.handleExecute(index, appointment.id)}>
+                          Виконати
+                        </button>
+                      )}
+                       {this.props.param === "doctor" && !appointment.status && (
                         <button onClick={() => this.handleExecute(index, appointment.id)}>
                           Виконати
                         </button>
@@ -81,6 +96,5 @@ class Appointments extends React.Component {
         </div>
       );
     }
-  }
-  
+  }    
  export default Appointments

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import Start from "./Start";
+import PatientAppointments from './PatientAppointments';
 
 function App() {
 
@@ -16,13 +17,13 @@ function App() {
         </div>
         <h3 className="subtitle">Приватна поліклініка</h3>
         <button onClick={() => {
-          <Link to="/start" className="button">ProfiMed</Link>
+          <Link to="/patient" className="button">ProfiMed</Link>
         }} className="button">ProfiMed</button>
         
         <Routes>
         <Route path="/" element={<Start />} />
           <Route path="/info" element={<UserInfo />} />
-          <Route path="/start" element={<Start />} />
+          <Route path="/patient" element={<PatientAppointments />} />
         </Routes>
       </div>
     </Router>

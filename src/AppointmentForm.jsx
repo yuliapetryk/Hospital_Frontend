@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
- export default function AppointmentForm() {
-
+export default function AppointmentForm() {
+  const [successMessage, setSuccessMessage] = useState('');
+  
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Зупинити стандартну поведінку форми, щоб сторінка не перезавантажувалася
+    event.preventDefault();
 
-    // Отримати значення полів форми
     const data = {
       date: event.target.elements.data.value,
       doctorId: event.target.elements.doctorId.value,
@@ -18,7 +18,7 @@ import React from 'react';
 
 
     try {
-      const response = await fetch('http://localhost:3030/hospital/create', {
+      const response = await fetch('http://localhost:3030/hospital/appointments_doctor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -30,8 +30,9 @@ import React from 'react';
         throw new Error('Network response was not ok');
       }
 
-      console.log('Дані успішно відправлені на сервер');
-      // Очистити поля форми або виконати інші дії
+      setSuccessMessage('Прийом успішно зафіксовано');
+      event.target.reset(); 
+
     } catch (error) {
       console.error('Помилка під час відправлення даних на сервер:', error);
     }
@@ -40,7 +41,7 @@ import React from 'react';
 
   return (
     <div>
-       <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label className="subtitle" htmlFor="data">Дата:</label>
           <input type="text" id="data" name="data" />
@@ -76,8 +77,9 @@ import React from 'react';
           <input type="text" id="surgery" name="surgery" />
         </div>
 
-        <button class="button" type="submit">Створити</button>
+        <button className="button" type="submit">Створити</button>
       </form>
+      {successMessage && <p class="subtitle">{successMessage}</p>}
     </div>
   );
 }
