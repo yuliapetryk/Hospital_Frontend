@@ -22,7 +22,6 @@ class PatientAppointments extends React.Component {
         })
         .catch(error => console.error('Error:', error)); 
     }
-      
     
       render() {
         return (

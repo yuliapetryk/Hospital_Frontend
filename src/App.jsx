@@ -2,9 +2,9 @@ import './App.css'
 
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import UserInfo from "./UserInfo";
-import Start from "./Start";
-import PatientAppointments from './PatientAppointments';
+import UserInfo from "./components/UserInfo";
+import Start from "./components/Start";
+import PatientAppointments from './components/PatientAppointments';
 
 function App() {
 

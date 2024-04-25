@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AuthForm } from "./AuthForm";
+import { AuthForm } from "../auth/AuthForm";
 function Start() {
   const [showAuthFormPatient, setShowAuthFormPatient] = useState(false); 
   const [showAuthFormDoctor, setShowAuthFormDoctor] = useState(false); 
