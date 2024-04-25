@@ -16,9 +16,7 @@ function App() {
           <img src="/icon-doctor.png" className="logo doctor" alt="doctor logo" />
         </div>
         <h3 className="subtitle">Приватна поліклініка</h3>
-        <button onClick={() => {
-          <Link to="/patient" className="button">ProfiMed</Link>
-        }} className="button">ProfiMed</button>
+        <h1 class="title"> ProfiMed</h1>
         
         <Routes>
         <Route path="/" element={<Start />} />
