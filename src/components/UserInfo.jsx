@@ -16,7 +16,7 @@ function UserInfo() {
       <p class= "subtitle">{user.lastName} {user.firstName} {user.patronymic}</p>
       <button onClick={() => {
          setShowAuthForm(true);
-        setShowAppointments(false)
+         setShowAppointments(false)
       }} className="button">Додати прийом</button>
 
       <button onClick={() => {
@@ -24,7 +24,8 @@ function UserInfo() {
         setShowAuthForm(false)
       }} className="button">Переглянути прийоми</button>
       
-       {showAuthForm && <AppointmentForm />}
+      
+       {showAuthForm && <AppointmentForm id={user.id} />}
        {showAppointments && <Appointments param={user.position}  id={user.id} /> }
     </div>
   );

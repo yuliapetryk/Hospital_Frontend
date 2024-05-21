@@ -22,13 +22,14 @@ export function AuthForm({ mode }) {
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result === "0") {
+        console.log(result)
+        if (result === 0) {
           setErrorMessage("Неправильний ID або пароль");
         } else {
           if (mode === 0){
           navigate("/info", { state: { user: result } });
           }
-          else navigate("/patient", {state: { user: result }})
+          else navigate(`/patient/${id}`, { state: { user: result, id: id } });
         }
       })
       .catch((error) => {
